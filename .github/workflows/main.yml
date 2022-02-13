@@ -21,7 +21,6 @@ jobs:
       - run: |
           echo -e "AUTH_TOKEN=${{ secrets.AUTH_TOKEN }}\nDATABASE_URL=${{ secrets.DATABASE_URL }}" > .env
           yarn
-          yarn test
           yarn audit
       - name: Lint (code analysis)
         run: yarn lint
