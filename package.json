@@ -24,6 +24,7 @@
     "express-rate-limit": "^6.2.1",
     "helmet": "^4.6.0",
     "joi": "^17.4.2",
+    "serverless-apigateway-log-retention": "^0.0.3",
     "source-map-support": "^0.5.10"
   },
   "devDependencies": {
@@ -46,7 +47,6 @@
     "serverless-api-gateway-throttling": "^1.2.2",
     "serverless-dotenv-plugin": "^3.12.2",
     "serverless-plugin-aws-alerts": "^1.7.4",
-    "serverless-plugin-log-retention": "^2.0.0",
     "serverless-plugin-typescript": "^2.1.1",
     "supertest": "^6.2.2",
     "ts-jest": "^27.1.3",

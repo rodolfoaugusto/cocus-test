@@ -8,10 +8,22 @@ plugins:
   - serverless-dotenv-plugin
   - serverless-plugin-aws-alerts
   - serverless-api-gateway-throttling
-  - serverless-plugin-log-retention
+  - serverless-apigateway-log-retention
   - serverless-plugin-typescript
 
 custom:
+  apiGatewayThrottling:
+    maxRequestsPerSecond: 100
+    maxConcurrentRequests: 50
+
+  apigatewayLogRetention:
+    executionLogging:
+      enabled: true
+      days: 14
+    accessLogging:
+      enabled: true
+      days: 7
+
   alerts:
     stages:
       - prod
@@ -35,6 +47,7 @@ custom:
       - functionDuration
 
 provider:
+  profile: rodi
   name: aws
   runtime: nodejs14.x
   lambdaHashingVersion: 20201221
@@ -51,4 +64,3 @@ functions:
           throttling:
             maxRequestsPerSecond: 100
             maxConcurrentRequests: 50
-    logRetentionInDays: 30
