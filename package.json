@@ -24,7 +24,6 @@
     "express-rate-limit": "^6.2.1",
     "helmet": "^4.6.0",
     "joi": "^17.4.2",
-    "serverless-apigateway-log-retention": "^0.0.3",
     "source-map-support": "^0.5.10"
   },
   "devDependencies": {

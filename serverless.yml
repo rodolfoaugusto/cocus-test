@@ -8,21 +8,12 @@ plugins:
   - serverless-dotenv-plugin
   - serverless-plugin-aws-alerts
   - serverless-api-gateway-throttling
-  - serverless-apigateway-log-retention
   - serverless-plugin-typescript
 
 custom:
   apiGatewayThrottling:
     maxRequestsPerSecond: 100
     maxConcurrentRequests: 50
-
-  apigatewayLogRetention:
-    executionLogging:
-      enabled: true
-      days: 14
-    accessLogging:
-      enabled: true
-      days: 7
 
   alerts:
     stages:
@@ -52,6 +43,8 @@ provider:
   lambdaHashingVersion: 20201221
   stage: prod
   region: us-east-1
+  logRetentionInDays: 30
+  timeout: 10
 functions:
   api:
     handler: src/lambda.handler
