@@ -12,7 +12,7 @@
 - [x] Create validation for input values
 - [x] Tests must be implemented
 - [x] Unit or functional (bonus points for both)
-- [?] Bonus points if tests are “BDD-style”
+- [x] Bonus points if tests are “BDD-style”
 
 # Database
 - [x] Each result must be saved on a database table
