@@ -47,7 +47,6 @@ custom:
       - functionDuration
 
 provider:
-  profile: rodi
   name: aws
   runtime: nodejs14.x
   lambdaHashingVersion: 20201221
