@@ -1,0 +1,54 @@
+# https://console.aws.amazon.com/iam/home#/users
+# serverless deploy --aws-profile rodi
+# aws configure --profile rodi
+
+service: cocus-triangle
+
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-plugin-aws-alerts
+  - serverless-api-gateway-throttling
+  - serverless-plugin-log-retention
+  - serverless-plugin-typescript
+
+custom:
+  alerts:
+    stages:
+      - prod
+ 
+    dashboards: true
+ 
+    nameTemplate: $[functionName]-$[metricName]-Alarm
+    prefixTemplate: $[stackName]
+ 
+    topics:
+      ok: ${self:service}-prod-alerts-ok
+      alarm: ${self:service}-prod-alerts-alarm
+      insufficientData: ${self:service}-prod-alerts-insufficientData
+    definitions:
+      functionErrors:
+        period: 300
+    alarms:
+      - functionThrottles
+      - functionErrors
+      - functionInvocations
+      - functionDuration
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  lambdaHashingVersion: 20201221
+  stage: prod
+  region: us-east-1
+functions:
+  api:
+    handler: src/lambda.handler
+    events:
+      - http:
+          path: /
+          method: any
+          cors: true
+          throttling:
+            maxRequestsPerSecond: 100
+            maxConcurrentRequests: 50
+    logRetentionInDays: 30

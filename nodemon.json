@@ -1,0 +1,14 @@
+{
+  "restartable": "rs",
+  "ignore": [".git", "node_modules/**/node_modules"],
+  "execMap": {
+    "ts": "node -r ts-node/register/transpile-only -r tsconfig-paths/register -r dotenv/config src/server.ts"
+  },
+  "verbose": false,
+  "watch": ["src"],
+  "env": {
+    "NODE_ENV": "development",
+    "DEBUG": "knex:query,knex:bindings"
+  },
+  "ext": "ts,js,json,graphql"
+}

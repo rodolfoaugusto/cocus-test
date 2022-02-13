@@ -1,0 +1,14 @@
+version: "3.2"
+
+services:
+  postgres:
+    container_name: triangle_db
+    image: postgres:14.0-alpine
+    ports:
+      - 5432:5432
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: triangle

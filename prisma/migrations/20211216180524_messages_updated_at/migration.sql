@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE "records" ALTER COLUMN "created_at" SET DEFAULT CURRENT_TIMESTAMP;
+
+-- AlterTable
+ALTER TABLE "types" ALTER COLUMN "id" DROP DEFAULT;
