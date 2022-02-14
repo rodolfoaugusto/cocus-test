@@ -17,7 +17,7 @@ custom:
 
   alerts:
     stages:
-      - staging
+      - prod
  
     dashboards: true
  
@@ -25,9 +25,9 @@ custom:
     prefixTemplate: $[stackName]
  
     topics:
-      ok: ${self:service}-staging-alerts-ok
-      alarm: ${self:service}-staging-alerts-alarm
-      insufficientData: ${self:service}-staging-alerts-insufficientData
+      ok: ${self:service}-prod-alerts-ok
+      alarm: ${self:service}-prod-alerts-alarm
+      insufficientData: ${self:service}-prod-alerts-insufficientData
     definitions:
       functionErrors:
         period: 300
@@ -41,7 +41,7 @@ provider:
   name: aws
   runtime: nodejs14.x
   lambdaHashingVersion: 20201221
-  stage: prod
+  stage: staging
   region: us-east-1
   logRetentionInDays: 30
   timeout: 10
@@ -51,6 +51,13 @@ functions:
     events:
       - http:
           path: /
+          method: any
+          cors: true
+          throttling:
+            maxRequestsPerSecond: 100
+            maxConcurrentRequests: 50
+      - http:
+          path: /{proxy+}
           method: any
           cors: true
           throttling:
